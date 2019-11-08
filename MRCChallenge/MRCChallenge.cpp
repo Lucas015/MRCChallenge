@@ -1,6 +1,3 @@
-// MRCChallenge.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 using namespace std;
 
@@ -13,14 +10,15 @@ public:
 	static const int S = 3;
 	static const int W = 4;
 
-	int x = 5;
-	int y = 5;
+	int x = 0;
+	int y = 0;
 	int facing = N;
 
 	Rover()
 	{
 
 	}
+
 	void setPosition(int x, int y, int facing) {
 
 		this->x = y;
@@ -123,10 +121,28 @@ private:
 
 int main()
 {
+	int coordinate1, coordinate2;
+	string commands;
+	char dir;
+
 	Rover rover;
 	rover.setPosition(1, 2, Rover::E);
 	rover.process("MMLMRMMRRMMML");
 	rover.printPosition(); //Print 3 3 S
+
+	//User input
+	cout << "Please enter your coordinates followed by Enter key" << endl;
+	cin >> coordinate1;
+	cin >> coordinate2;
+	cout << "Please enter your direction N, W, E or S" << endl;
+	cin >> dir;
+	cout << "Please enter your Commands using L and R for rotating 90 degrees to the Left and Right respectively and M for moving one space forward in the direction the Rover is facing" << endl;
+	cin >> commands;
+
+	//Process user inputs
+	rover.setPosition(coordinate1, coordinate2, dir);
+	rover.process(commands);
+	rover.printPosition();
 }
 
 
